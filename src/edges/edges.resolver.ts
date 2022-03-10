@@ -22,7 +22,7 @@ export class EdgesResolver {
       }
     
       @Mutation(type => [Edge])
-      async addTask(
+      async createEdge(
         @Args('input') input: AddEdgeInput,
       ) {
         return this.edgesService.createEdge(input);

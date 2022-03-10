@@ -1,0 +1,14 @@
+
+version: '3.8'
+services:
+  database:
+
+    image: "postgres:latest"
+    env_file:
+      - database.env # configure postgres
+    ports:
+      - "6543:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data/ 
+volumes:
+  pg-data: 
