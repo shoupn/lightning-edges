@@ -1,8 +1,17 @@
 
 version: '3.8'
 services:
-  database:
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    networks:
+        - lightning_edges
+
+  database:
     image: "postgres:latest"
     env_file:
       - .env # configure postgres
@@ -10,5 +19,11 @@ services:
       - "5432:5432"
     volumes:
       - pg-data:/var/lib/postgresql/data/ 
+    networks:
+        - lightning_edges
 volumes:
   pg-data: 
+
+networks:
+  lightning_edges:
+    driver: bridge
