@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Edge } from 'src/entities/edge.entity';
+import { Edge } from '../entities/edge.entity';
 
 require('dotenv').config();
 

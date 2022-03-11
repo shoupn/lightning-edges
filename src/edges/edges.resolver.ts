@@ -1,6 +1,6 @@
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { EdgesService } from './edges.service';
-import { Edge } from 'src/models/edge.model';
+import { Edge } from '../models/edge.model';
 import { AddEdgeInput } from 'src/dto/edges.dto';
 @Resolver('edges')
 export class EdgesResolver {

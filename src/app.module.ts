@@ -7,6 +7,7 @@ import { EdgesService } from './edges/edges.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from './config/config.service';
 import { Edge } from './entities/edge.entity';
+import { EdgesResolver } from './edges/edges.resolver';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Edge]),
@@ -17,6 +18,6 @@ import { Edge } from './entities/edge.entity';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, EdgesService],
+  providers: [AppService, EdgesResolver, EdgesService],
 })
 export class AppModule {}

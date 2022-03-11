@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AddEdgeInput } from 'src/dto/edges.dto';
-import { Edge } from 'src/entities/edge.entity';
+import { AddEdgeInput } from '../dto/edges.dto';
+import { Edge } from '../entities/edge.entity';
 import { Not, Repository } from 'typeorm';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class EdgesService {
 
   async getEdges() {
     //TODO need to add a call to pg table to get all edges
-    return await this.edgeRepository.find({ where: { id: Not(null) } });
+    return await this.edgeRepository.find();
   }
 
   async getEdge(id: number) {
