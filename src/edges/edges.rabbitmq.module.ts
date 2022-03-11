@@ -6,7 +6,7 @@ import { Module } from '@nestjs/common';
     RabbitMQModule.forRoot(RabbitMQModule, {
       exchanges: [
         {
-          name: 'exchange1',
+          name: 'edges-exchange',
           type: 'topic',
         },
       ],

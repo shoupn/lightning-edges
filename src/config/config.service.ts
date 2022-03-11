@@ -39,15 +39,11 @@ class ConfigService {
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),
       synchronize: true,
-      entities: [
-       Edge,
-    ],
-
+      entities: [Edge],
 
       cli: {
         migrationsDir: 'src/migration',
       },
-
     };
   }
 }

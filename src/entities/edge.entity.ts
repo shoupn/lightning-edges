@@ -6,7 +6,7 @@ import {
   Entity,
 } from 'typeorm';
 
-@Entity("edge", { schema: "public" })
+@Entity('edge', { schema: 'public' })
 export class Edge {
   @PrimaryGeneratedColumn()
   id: number;
@@ -22,7 +22,7 @@ export class Edge {
 
   @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
-  
+
   @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 }

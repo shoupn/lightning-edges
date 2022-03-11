@@ -5,9 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from './config/config.service';
 import { Edge } from './entities/edge.entity';
 
-
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
+import {
+  ApolloFederationDriver,
+  ApolloFederationDriverConfig,
+} from '@nestjs/apollo';
 import { EdgesService } from './edges/edges.service';
 import { EdgesResolver } from './edges/edges.resolver';
 import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
@@ -24,7 +26,7 @@ import { EdgesRabbitMQModule } from './edges/edges.rabbitmq.module';
     RabbitMQModule.forRoot(RabbitMQModule, {
       exchanges: [
         {
-          name: 'exchange1',
+          name: 'edges-exchange',
           type: 'topic',
         },
       ],

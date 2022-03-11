@@ -21,5 +21,4 @@ export class Edge {
 
   @Field()
   node2Alias: string;
-
 }
