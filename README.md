@@ -13,6 +13,7 @@ For this project I used yarn version v1.22.17 and node version 16.8.0
 
 Docker version 20.10.12
 docker-compose version 1.29.2
+are also required for setting up
 
 ## Installation 
 clone project using `git clone https://github.com/shoupn/lightning-edges.git`
@@ -25,6 +26,12 @@ $ yarn install
 ```
 Should be ready to go
 ## Running the app
+from the root of the project run `docker-compose up` to create and bring up a containers
+for both the postgres edges DB and the required instance of RabbitMq. The postgres DB is connected to and 
+exposed on default 5432 (can look up the connection props in the .env file or project),
+and the RabbitMQ instance is using default as well `guest:guest@localhost:5672`.
+
+Once the containers are brought up, you can start the microservice, using either below. 
 
 ```bash
 # development
@@ -32,18 +39,10 @@ $ yarn start
 
 # watch mode
 $ yarn start:dev
-
-# production mode
-$ yarn start:prod
 ```
 
 The microservice is running on port 3000, 
 http://localhost:3000/graphql running using the dev or watch mode will open up the graphql playground
-
-
-## Test
-
-Tests were not included as were not part of requirement
 
 
 ### Query and Mutations Requirements
@@ -56,7 +55,10 @@ Tests were not included as were not part of requirement
   - Creates a new edge in the database. The mutation needs the node1_alias and
 node2_alias as arguments.
 - After the new edge is saved in the database, send the object to a RabbitMQ
-queue.
+queue. 
+
+The resolver class handles the incoming graphql requests and called down to the service layer. 
+The service layer is using TypeOrm for all updates to the postgres Db and fetching data.  
 
 ```
 query getNodes {
@@ -89,3 +91,5 @@ mutation {
 }
 
 ```
+## Tests
+Tests were not included as were not part of requirement
