@@ -5,9 +5,9 @@ services:
 
     image: "postgres:latest"
     env_file:
-      - database.env # configure postgres
+      - .env # configure postgres
     ports:
-      - "6543:5432"
+      - "5432:5432"
     volumes:
       - pg-data:/var/lib/postgresql/data/ 
 volumes:

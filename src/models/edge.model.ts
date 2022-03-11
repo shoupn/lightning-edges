@@ -1,8 +1,9 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { IsOptional } from 'class-validator';
 
 @ObjectType()
 export class Edge {
-  
+  @IsOptional()
   @Field(() => ID)
   id: number;
 
