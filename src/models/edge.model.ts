@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class Edge {
+export class EdgeModel {
   
   @Field(() => ID)
   id: number;
