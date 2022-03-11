@@ -9,11 +9,12 @@ Built using NestJs, and GraphQLModule
 
 ## Requirement for building and running 
 I used yarn as the preferred package manager. Could also use npm. 
-For this project I used yarn version v1.22.17 and node version 16.8.0
-
-Docker version 20.10.12
-docker-compose version 1.29.2
-are also required for setting up
+For this project I used 
+- yarn version v1.22.17 
+- node version 16.8.0
+- Docker version 20.10.12 
+- docker-compose version 1.29.2
+Your versions may vary, but this is what I used. 
 
 ## Installation 
 clone project using `git clone https://github.com/shoupn/lightning-edges.git`
