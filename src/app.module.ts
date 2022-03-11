@@ -6,7 +6,7 @@ import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/ap
 import { EdgesService } from './edges/edges.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from './config/config.service';
-import { Edge } from './models/edge.entity';
+import { Edge } from './entities/edge.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Edge]),

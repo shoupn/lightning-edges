@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Edge } from 'src/models/edge.entity';
+import { Edge } from 'src/entities/edge.entity';
 
 require('dotenv').config();
 
@@ -40,12 +40,9 @@ class ConfigService {
       database: this.getValue('POSTGRES_DATABASE'),
       synchronize: true,
       entities: [
-        __dirname + '/../**/*.entity.ts',
-      ],
+       Edge,
+    ],
 
-      migrationsTableName: 'migration',
-
-      migrations: ['src/migration/*.ts'],
 
       cli: {
         migrationsDir: 'src/migration',

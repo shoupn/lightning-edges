@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AddEdgeInput } from 'src/dto/edges.dto';
-import { Edge } from 'src/models/edge.entity';
+import { Edge } from 'src/entities/edge.entity';
 import { Not, Repository } from 'typeorm';
 
 @Injectable()
