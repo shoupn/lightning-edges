@@ -4,10 +4,6 @@ import { Edge } from '../entities/edge.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   providers: [EdgesService],
-  imports:[
-    TypeOrmModule.forFeature([Edge]),
-  ],
+  imports: [TypeOrmModule.forFeature([Edge])],
 })
-export class EdgesModule {
-
-}
+export class EdgesModule {}

@@ -3,11 +3,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AddEdgeInput } from '../dto/edges.dto';
 import { Edge } from '../entities/edge.entity';
 import { Not, Repository } from 'typeorm';
+import {
+  AmqpConnection,
+  Nack,
+  RabbitRPC,
+  RabbitSubscribe,
+} from '@golevelup/nestjs-rabbitmq';
 
 @Injectable()
 export class EdgesService {
   constructor(
     @InjectRepository(Edge) private edgeRepository: Repository<Edge>,
+    private readonly amqpConnection: AmqpConnection,
   ) {}
 
   async getEdges() {
@@ -20,6 +27,23 @@ export class EdgesService {
     return await this.edgeRepository.findOne({ where: { id: id } });
   }
 
+  //TODO could refactor out into it's own module
+  @RabbitSubscribe({
+    exchange: 'edges-exchange',
+    routingKey: 'edges-route',
+    queue: 'rpc-queue',
+  })
+  public async pubSubHandler(msg: any) {
+    await this.edgeRepository.save({
+      id: msg.edge.id,
+      node1Alias: `${msg.edge.node1Alias}-updated`,
+      node2Alias: `${msg.edge.node2Alias}-updated`,
+    });
+
+    console.log(`New channel between ${msg.edge.node1Alias} and
+    ${msg.edge.node2Alias}  with a capacity of ${msg.edge.capacity} has been created.`);
+  }
+
   async createEdge(input: AddEdgeInput): Promise<Edge[]> {
     const edge: Partial<Edge> = {
       node1Alias: input.node1Alias,
@@ -30,9 +54,9 @@ export class EdgesService {
     };
 
     await this.edgeRepository.insert(edge);
+    this.amqpConnection.publish('edges-exchange', 'edges-route', {
+      edge: edge,
+    });
     return await this.getEdges();
-
-    //TODO add to edges table in pg
-    //send to rabbitmq
   }
 }
