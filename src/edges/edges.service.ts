@@ -27,6 +27,7 @@ export class EdgesService {
     return await this.edgeRepository.findOne({ where: { id: id } });
   }
 
+  //TODO could refactor out into it's own module
   @RabbitSubscribe({
     exchange: 'edges-exchange',
     routingKey: 'edges-route',
