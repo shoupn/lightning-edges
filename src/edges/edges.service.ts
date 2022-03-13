@@ -50,7 +50,7 @@ export class EdgesService {
       node2Alias: input.node2Alias,
       createdAt: new Date(),
       updatedAt: new Date(),
-      capacity: 10000,
+      capacity: Math.floor(Math.random() * ((1000000-10000)+1) + 10000)
     };
 
     await this.edgeRepository.insert(edge);
