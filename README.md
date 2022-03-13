@@ -31,7 +31,8 @@ from the root of the project run `docker-compose up` to create and bring up a co
 for both the postgres edges DB and the required instance of RabbitMq. The postgres DB is connected to and 
 exposed on default 5432 (can look up the connection props in the .env file or project),
 and the RabbitMQ instance is using default as well `guest:guest@localhost:5672`.
-
+There is an `initdb.sh` shell script that will create the `edges` DB for the application to connect to. 
+Ports are mapped straight across from the container to the same port on your local host. 
 Once the containers are brought up, you can start the microservice, using either below. 
 
 ```bash
